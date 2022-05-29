@@ -2,17 +2,18 @@ package com.cuoiky.andoid.dictionaryapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Word {
+public class Word implements Serializable {
     @SerializedName("word")
     private String word;
     @SerializedName("results")
     private List<Result> results;
     @SerializedName("pronunciation")
-    private String pronunciation;
+    private Pronunciation pronunciation;
 
-    public Word(String word, List<Result> results, String pronunciation) {
+    public Word(String word, List<Result> results, Pronunciation pronunciation) {
         this.word = word;
         this.results = results;
         this.pronunciation = pronunciation;
@@ -34,11 +35,20 @@ public class Word {
         this.results = results;
     }
 
-    public String getPronunciation() {
+    public Pronunciation getPronunciation() {
         return pronunciation;
     }
 
-    public void setPronunciation(String pronunciation) {
+    public void setPronunciation(Pronunciation pronunciation) {
         this.pronunciation = pronunciation;
+    }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "\nword='" + word + '\'' +
+                ",\n results=" + results +
+                ",\n pronunciation=" + pronunciation +
+                '}';
     }
 }

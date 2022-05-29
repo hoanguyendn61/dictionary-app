@@ -52,4 +52,14 @@ public class Result {
     public void setSynonyms(List<String> synonyms) {
         this.synonyms = synonyms;
     }
+
+    @Override
+    public String toString() {
+        return "\nResult{" +
+                "definition='" + definition + '\'' +
+                ", partOfSpeech='" + partOfSpeech + '\'' +
+                ", examples=" + examples +
+                ", synonyms=" + synonyms +
+                '}';
+    }
 }
