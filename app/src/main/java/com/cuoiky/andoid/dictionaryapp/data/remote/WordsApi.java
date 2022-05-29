@@ -3,6 +3,7 @@ package com.cuoiky.andoid.dictionaryapp.data.remote;
 import com.cuoiky.andoid.dictionaryapp.data.model.Word;
 import com.cuoiky.andoid.dictionaryapp.util.Constants;
 
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
