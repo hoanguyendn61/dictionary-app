@@ -1,14 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.DictionaryApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+    <!--  Base application theme.  -->
+    <style name="Theme.DictionaryApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!--  Primary brand color.  -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryColorVariant</item>
         <item name="colorOnPrimary">@color/secondaryColor</item>
-        <!-- Secondary brand color. -->
+        <!--  Secondary brand color.  -->
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryColorVariant</item>
         <item name="colorOnSecondary">@color/primaryColor</item>
-        <!-- Customize your theme here. -->
+        <!--  Customize your theme here.  -->
+    </style>
+    <style name="BlackCursorSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="colorControlActivated">@color/primaryColor</item>
+    </style>
+    <style name="SynonymTextStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="PronunciationTextStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/secondaryColorVariant</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

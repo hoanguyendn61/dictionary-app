@@ -12,4 +12,5 @@
     <color name="secondaryColor">#fff</color>
     <color name="secondaryColorVariant">#4da2ff</color>
     <color name="lightGrey">#f2f2f2</color>
+    <color name="darkGrey">#575757</color>
 </resources>
