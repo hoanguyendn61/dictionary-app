@@ -1,4 +1,4 @@
-package com.cuoiky.andoid.dictionaryapp.data.model;
+package com.cuoiky.andoid.dictionaryapp.data.model.wordsapi;
 
 import com.google.gson.annotations.SerializedName;
 

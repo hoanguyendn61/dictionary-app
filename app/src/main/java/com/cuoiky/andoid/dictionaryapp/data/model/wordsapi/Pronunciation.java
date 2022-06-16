@@ -1,4 +1,4 @@
-package com.cuoiky.andoid.dictionaryapp.data.model;
+package com.cuoiky.andoid.dictionaryapp.data.model.wordsapi;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -13,6 +13,30 @@ public class Pronunciation {
     public Pronunciation(String all, String noun, String verb) {
         this.all = all;
         this.noun = noun;
+        this.verb = verb;
+    }
+
+    public String getAll() {
+        return all;
+    }
+
+    public void setAll(String all) {
+        this.all = all;
+    }
+
+    public String getNoun() {
+        return noun;
+    }
+
+    public void setNoun(String noun) {
+        this.noun = noun;
+    }
+
+    public String getVerb() {
+        return verb;
+    }
+
+    public void setVerb(String verb) {
         this.verb = verb;
     }
 

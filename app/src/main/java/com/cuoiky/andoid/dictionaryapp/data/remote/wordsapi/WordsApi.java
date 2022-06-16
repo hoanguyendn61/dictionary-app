@@ -11,7 +11,7 @@ import retrofit2.http.Path;
 
 public interface WordsApi {
     @Headers({
-            "X-RapidAPI-Host: " + Constants.X_RAPID_API_HOST,
+            "X-RapidAPI-Host: " + Constants.WORDS_X_RAPID_API_HOST,
             "X-RapidAPI-Key: " + Constants.X_RAPID_API_KEY,
     })
     @GET("{word}")
