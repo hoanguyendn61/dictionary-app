@@ -1,4 +1,9 @@
-package com.cuoiky.andoid.dictionaryapp.data.model;
+package com.cuoiky.andoid.dictionaryapp.data.model.wordsapi;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
