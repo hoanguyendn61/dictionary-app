@@ -1,6 +1,6 @@
 package com.cuoiky.andoid.dictionaryapp.util;
 
-import com.cuoiky.andoid.dictionaryapp.data.model.Word;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 
 public interface WordResponseListener {
     public void onSuccess(Word word);
