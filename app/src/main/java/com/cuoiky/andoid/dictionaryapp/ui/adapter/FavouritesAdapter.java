@@ -16,9 +16,11 @@ import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.ViewHolder> {
     private final Context context;
+    List<Word> listCopy;
     private List<Word> listFavWords = new ArrayList<>();
     private List<Word> selectedWords = new ArrayList<>();
     public interface OnItemClickListener{
@@ -34,7 +36,8 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
     public void setFavWordsList(List<Word> list){
         this.listFavWords.clear();
         this.listFavWords = list;
-
+        this.listCopy = new ArrayList<>();
+        this.listCopy.addAll(list);
         notifyDataSetChanged();
     }
     @NonNull
@@ -70,6 +73,21 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
                 return true;
             }
         });
+    }
+    public void filter(String keyword){
+        this.listFavWords.clear();
+        if(!keyword.equals("")){
+            keyword = keyword.toLowerCase(Locale.ROOT);
+            for (Word item: listCopy){
+                String word = item.getWord();
+                if (word.toLowerCase(Locale.ROOT).contains(keyword)){
+                    this.listFavWords.add(item);
+                }
+            }
+        } else {
+            this.listFavWords.addAll(listCopy);
+        }
+        notifyDataSetChanged();
     }
     public List<Word> getSelectedWords(){
         return this.selectedWords;
