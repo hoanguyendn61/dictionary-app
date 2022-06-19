@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.cuoiky.andoid.dictionaryapp.data.model.Word;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 
 @Database(entities = {Word.class}, version = 1)
 @TypeConverters({Converters.class})

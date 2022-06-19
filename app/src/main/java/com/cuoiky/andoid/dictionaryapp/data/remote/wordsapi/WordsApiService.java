@@ -1,13 +1,14 @@
-package com.cuoiky.andoid.dictionaryapp.data.remote;
+package com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi;
 
-import com.cuoiky.andoid.dictionaryapp.data.model.Word;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
+import com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi.WordsApi;
+import com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi.GetWordDetailsDeserializer;
 import com.cuoiky.andoid.dictionaryapp.util.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.lang.reflect.Type;
 
-import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -26,7 +27,6 @@ public class WordsApiService {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(type, typeAdapter);
         Gson gson = gsonBuilder.create();
-
         return GsonConverterFactory.create(gson);
     }
     public Call<Word> getWord(String w){

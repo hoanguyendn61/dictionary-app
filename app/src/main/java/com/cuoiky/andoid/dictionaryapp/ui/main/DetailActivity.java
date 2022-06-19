@@ -1,39 +1,27 @@
 package com.cuoiky.andoid.dictionaryapp.ui.main;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-
-import com.cuoiky.andoid.dictionaryapp.R;
-import com.cuoiky.andoid.dictionaryapp.data.model.Word;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 import com.cuoiky.andoid.dictionaryapp.databinding.ActivityDetailBinding;
 import com.cuoiky.andoid.dictionaryapp.ui.adapter.ResultsAdapter;
-import com.cuoiky.andoid.dictionaryapp.ui.viewmodel.WordsViewModel;
+import com.cuoiky.andoid.dictionaryapp.ui.viewmodel.MainViewModel;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     private ActivityDetailBinding binding;
     private final static String TAG = "DetailActivity";
     private ResultsAdapter mAdapter;
     private Word mWord;
-    private WordsViewModel mViewModel;
+    private MainViewModel mViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +35,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
     void initValues(){
-        mViewModel = new ViewModelProvider(this).get(WordsViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.init(getApplication());
         Gson gson = new Gson();
         Intent i = getIntent();
@@ -68,7 +56,7 @@ public class DetailActivity extends AppCompatActivity {
         RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(getApplicationContext());
         binding.rvResults.setLayoutManager(linearLayout);
         binding.rvResults.setAdapter(mAdapter);
-        mAdapter.setResultsList(mWord.getResults());
+//        mAdapter.setResultsList(mWord.getResults());
     }
     
 }
