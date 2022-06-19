@@ -2,13 +2,19 @@ package com.cuoiky.andoid.dictionaryapp.data.repository;
 
 
 import android.app.Application;
+import android.os.AsyncTask;
 import android.util.Log;
+
+import androidx.lifecycle.LiveData;
 
 import com.cuoiky.andoid.dictionaryapp.data.local.AppDatabase;
 import com.cuoiky.andoid.dictionaryapp.data.local.WordsDao;
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 import com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi.WordsApiService;
+import com.cuoiky.andoid.dictionaryapp.ui.main.MainActivity;
 import com.cuoiky.andoid.dictionaryapp.util.WordResponseListener;
+
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -22,6 +28,7 @@ import retrofit2.Response;
 
 public class WordsRepo {
     private WordsDao mWordsDao;
+    private LiveData<List<Word>> mFavWords;
     private static WordsRepo instance;
     private static final String TAG = "WordsRepo";
     private Word word;
@@ -35,6 +42,10 @@ public class WordsRepo {
     private WordsRepo(Application app){
         AppDatabase appDatabase = AppDatabase.getInstance(app);
         this.mWordsDao = appDatabase.wordsDao();
+        this.mFavWords = mWordsDao.getAllFavouriteWords();
+    }
+    public LiveData<List<Word>> getFavWords(){
+        return this.mFavWords;
     }
     //    find if word exists in list of favourite words
     public Single<Word> findWord(String w){
@@ -60,4 +71,34 @@ public class WordsRepo {
             }
         });
     }
+    public void insertWord(Word w){
+        new insertAsyncTask(mWordsDao).execute(w);
+    }
+    public void removeWord(Word w){
+        new removeAsyncTask(mWordsDao).execute(w);
+    }
+    private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {
+        private final WordsDao mAsyncTaskDao;
+        insertAsyncTask(WordsDao dao){
+            mAsyncTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(Word... params) {
+            mAsyncTaskDao.insertWord(params[0]);
+            return null;
+        }
+    }
+    private static class removeAsyncTask extends AsyncTask<Word, Void, Void> {
+        private final WordsDao mAsyncTaskDao;
+        removeAsyncTask(WordsDao dao) {
+            mAsyncTaskDao = dao;
+        }
+        @Override
+        protected Void doInBackground(final Word... params) {
+            mAsyncTaskDao.removeWord(params[0]);
+            return null;
+        }
+    }
+
+
 }
