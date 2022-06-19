@@ -54,6 +54,21 @@ public class DetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        final Boolean[] isfav = {isFav};
+        binding.ivStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isfav[0]) {
+                    binding.ivStar.setImageResource(R.drawable.ic_baseline_star_36);
+                    mViewModel.insertWord(mWord);
+                    isfav[0] = true;
+                } else {
+                    binding.ivStar.setImageResource(R.drawable.ic_baseline_star_outline_36);
+                    mViewModel.removeWord(mWord);
+                    isfav[0] = false;
+                }
+            }
+        });
     }
 
     void setData(Word w){

@@ -2,6 +2,7 @@ package com.cuoiky.andoid.dictionaryapp.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -18,6 +19,7 @@ import com.cuoiky.andoid.dictionaryapp.util.WordResponseListener;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -39,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.init(getApplication());
         createSearchBarEvent();
+        mViewModel.getFavWords().observe(this, new Observer<List<Word>>() {
+            @Override
+            public void onChanged(List<Word> words) {
+                if(words != null){
+                    Log.d(TAG,String.valueOf(words));
+                } else {
+                    Log.d(TAG, "words == null");
+                }
+            }
+        });
     }
     void createSearchBarEvent(){
         binding.svSearchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
