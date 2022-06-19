@@ -77,6 +77,9 @@ public class WordsRepo {
     public void removeWord(Word w){
         new removeAsyncTask(mWordsDao).execute(w);
     }
+    public void removeListofWords(List<Word> w, MainActivity.OnRemoveSelectedWords mListener){
+        new removeListAsyncTask(mListener, mWordsDao).execute(w);
+    }
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {
         private final WordsDao mAsyncTaskDao;
         insertAsyncTask(WordsDao dao){
@@ -99,6 +102,25 @@ public class WordsRepo {
             return null;
         }
     }
+    private static class removeListAsyncTask extends AsyncTask<List<Word>, Void, Boolean>{
+        private final MainActivity.OnRemoveSelectedWords mListener;
+        private final WordsDao mAsyncTaskDao;
+        removeListAsyncTask(MainActivity.OnRemoveSelectedWords mListener, WordsDao dao) {
+            this.mListener = mListener;
+            mAsyncTaskDao = dao;
+        }
+        @Override
+        protected Boolean doInBackground(List<Word>... lists) {
+            mAsyncTaskDao.removeListofWords(lists[0]);
+            return true;
+        }
 
-
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (mListener!=null){
+                mListener.clear(aBoolean);
+            }
+        }
+    }
 }
