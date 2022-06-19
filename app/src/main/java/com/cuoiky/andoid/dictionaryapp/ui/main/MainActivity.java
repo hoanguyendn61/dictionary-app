@@ -14,8 +14,10 @@ import android.widget.Toast;
 import com.cuoiky.andoid.dictionaryapp.R;
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 import com.cuoiky.andoid.dictionaryapp.databinding.ActivityMainBinding;
+import com.cuoiky.andoid.dictionaryapp.ui.adapter.FavouritesAdapter;
 import com.cuoiky.andoid.dictionaryapp.ui.viewmodel.MainViewModel;
 import com.cuoiky.andoid.dictionaryapp.util.WordResponseListener;
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private static final String TAG = "MainActivity";
     private MainViewModel mViewModel;
+    private FavouritesAdapter mFavAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,16 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         mViewModel.init(getApplication());
         createSearchBarEvent();
-        mViewModel.getFavWords().observe(this, new Observer<List<Word>>() {
-            @Override
-            public void onChanged(List<Word> words) {
-                if(words != null){
-                    Log.d(TAG,String.valueOf(words));
-                } else {
-                    Log.d(TAG, "words == null");
-                }
-            }
-        });
+        createFavouritesRV();
     }
     void createSearchBarEvent(){
         binding.svSearchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -65,13 +59,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    void createFavouritesRV(){
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
+        binding.rvFavourites.setLayoutManager(layoutManager);
+        mFavAdapter = new FavouritesAdapter(getApplicationContext(),
+                new FavouritesAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Word item) {
+                        openDetailActivity(item, true);
+                    }
+                });
+        binding.rvFavourites.setAdapter(mFavAdapter);
+        mViewModel.getFavWords().observe(this, new Observer<List<Word>>() {
+            @Override
+            public void onChanged(List<Word> words) {
+                if(words != null){
+                    mFavAdapter.setFavWordsList(words);
+                } else {
+                    Log.d(TAG, "words == null");
+                }
+            }
+        });
+    }
     void getWordFromApi(String text){
         mViewModel.getWord(text, new WordResponseListener(){
             @Override
             public void onSuccess(Word word) {
                 if (word.getResults() != null){
                     try {
-                        Log.d(TAG, String.valueOf(word));
                         openDetailActivity(word, false);
                     } catch(Exception e){
                         Log.e(TAG, e.toString());

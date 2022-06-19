@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Dictionary App</string>
-    <!--  TODO: Remove or change this placeholder text  -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="dictionary">Dictionary</string>
     <string name="recent">Recent</string>
     <string name="definitions">Definitions</string>
     <string name="synonyms">Synonyms</string>
     <string name="examples">Examples</string>
     <string name="results">Results</string>
+    <string name="favourites">Favourites</string>
+    <string name="remove">Remove</string>
 </resources>
