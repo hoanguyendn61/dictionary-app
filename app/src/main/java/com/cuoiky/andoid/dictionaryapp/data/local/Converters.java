@@ -2,8 +2,8 @@ package com.cuoiky.andoid.dictionaryapp.data.local;
 
 import androidx.room.TypeConverter;
 
-import com.cuoiky.andoid.dictionaryapp.data.model.Pronunciation;
-import com.cuoiky.andoid.dictionaryapp.data.model.Result;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Pronunciation;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Result;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

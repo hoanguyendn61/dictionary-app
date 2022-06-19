@@ -1,6 +1,6 @@
-package com.cuoiky.andoid.dictionaryapp.data.remote;
+package com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi;
 
-import com.cuoiky.andoid.dictionaryapp.data.model.Word;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 import com.cuoiky.andoid.dictionaryapp.util.Constants;
 
 import io.reactivex.rxjava3.core.Single;

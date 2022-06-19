@@ -11,24 +11,18 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bodonimoda_extrabold"
+        android:fontFamily="@font/rozha_one_regular"
         android:textColor="@color/primaryColor"
         android:textSize="56sp"
         android:text="@string/dictionary"
         />
     <androidx.appcompat.widget.SearchView
         android:id="@+id/sv_searchbar"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="34dp"
-        android:background="@color/lightGrey"
+        android:theme="@style/BlackCursorSearchView"
         android:layout_width="match_parent"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search here"
+        app:defaultQueryHint="Search here"
+        android:focusableInTouchMode="true"
         android:layout_height="wrap_content"/>
-    <androidx.appcompat.widget.AppCompatTextView
-        android:textColor="@color/primaryColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bodonimoda_extrabold"
-        android:textSize="32sp"
-        android:text="@string/recent"
-        />
 </LinearLayout>

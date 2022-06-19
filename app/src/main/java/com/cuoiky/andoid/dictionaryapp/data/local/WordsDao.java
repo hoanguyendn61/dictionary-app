@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.cuoiky.andoid.dictionaryapp.data.model.Word;
+import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 
 import java.util.List;
 
