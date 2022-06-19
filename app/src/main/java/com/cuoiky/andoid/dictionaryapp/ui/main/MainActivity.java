@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 import com.cuoiky.andoid.dictionaryapp.databinding.ActivityMainBinding;
 import com.cuoiky.andoid.dictionaryapp.ui.viewmodel.MainViewModel;
 import com.cuoiky.andoid.dictionaryapp.util.WordResponseListener;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if (word.getResults() != null){
                     try {
                         Log.d(TAG, String.valueOf(word));
+                        openDetailActivity(word, false);
                     } catch(Exception e){
                         Log.e(TAG, e.toString());
                     }
@@ -76,5 +79,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Error " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+    void openDetailActivity(Word word, Boolean isFav){
+        Gson gson = new Gson();
+        String myJson = gson.toJson(word);
+        Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+        intent.putExtra("wordItem", myJson);
+        if (isFav){
+            intent.putExtra("favourite", true);
+        }
+        startActivity(intent);
     }
 }

@@ -91,8 +91,6 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
             }
             // null check examples
             if (item.getExamples() != null){
-//                ArrayAdapter<String> examples_arrayAdapter = new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1, item.getExamples());
-//                lv_examples.setAdapter(examples_arrayAdapter);
                 ll_examples.removeAllViews();
                 for (int i =0; i< item.getExamples().size(); i++){
                     final TextView tv = new TextView(context);
