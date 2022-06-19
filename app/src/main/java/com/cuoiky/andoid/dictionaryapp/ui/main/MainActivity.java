@@ -45,6 +45,25 @@ public class MainActivity extends AppCompatActivity {
         mViewModel.init(getApplication());
         createSearchBarEvent();
         createFavouritesRV();
+        binding.btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Word> listW = mFavAdapter.getSelectedWords();
+                Log.d(TAG, String.valueOf(listW));
+                if (listW.size() > 0){
+                    mViewModel.removeListofWords(listW, new OnRemoveSelectedWords() {
+                        @Override
+                        public void clear(boolean result) {
+                            if(result){
+                                mFavAdapter.clearSelectedWords();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(),"Please select word you want to remove", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
     void createSearchBarEvent(){
         binding.svSearchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -116,5 +135,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("favourite", true);
         }
         startActivity(intent);
+    }
+    public interface OnRemoveSelectedWords{
+        public void clear(boolean result);
     }
 }

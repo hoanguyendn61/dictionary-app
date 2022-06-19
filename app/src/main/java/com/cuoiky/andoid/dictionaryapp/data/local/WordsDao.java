@@ -23,7 +23,8 @@ public interface WordsDao {
 
     @Delete
     public void removeWord(Word w);
-
+    @Delete
+    public void removeListofWords(List<Word> w);
     @Query("SELECT * FROM FavouriteWord WHERE word LIKE :w LIMIT 1")
     public Single<Word> findWord(String w);
 }

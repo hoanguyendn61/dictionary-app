@@ -20,6 +20,7 @@ import java.util.List;
 public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.ViewHolder> {
     private final Context context;
     private List<Word> listFavWords = new ArrayList<>();
+    private List<Word> selectedWords = new ArrayList<>();
     public interface OnItemClickListener{
         void onItemClick(Word item);
     }
@@ -46,6 +47,35 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(listFavWords.get(position), context, clickListener);
+        Word w = listFavWords.get(position);
+        if (!selectedWords.contains(w)){
+            holder.word.setBackgroundResource(R.drawable.rounded_corner);
+            holder.word.setTextColor(Color.BLACK);
+        } else {
+            holder.word.setBackgroundResource(R.drawable.dark_rounded_corner);
+            holder.word.setTextColor(Color.WHITE);
+        }
+        holder.ll_word.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (!selectedWords.contains(w)){
+                    holder.word.setBackgroundResource(R.drawable.dark_rounded_corner);
+                    holder.word.setTextColor(Color.WHITE);
+                    selectedWords.add(w);
+                } else {
+                    holder.word.setBackgroundResource(R.drawable.rounded_corner);
+                    holder.word.setTextColor(Color.BLACK);
+                    selectedWords.remove(w);
+                }
+                return true;
+            }
+        });
+    }
+    public List<Word> getSelectedWords(){
+        return this.selectedWords;
+    }
+    public void clearSelectedWords(){
+        this.selectedWords.clear();
     }
     @Override
     public int getItemCount() {

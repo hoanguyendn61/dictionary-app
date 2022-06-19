@@ -41,6 +41,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:backgroundTint="@color/white"
+            android:textColor="@color/primaryColor"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/primaryColor"
+            app:strokeWidth="0.4dp"
+            android:text="@string/remove"
+            />
     </LinearLayout>
 
     <RelativeLayout

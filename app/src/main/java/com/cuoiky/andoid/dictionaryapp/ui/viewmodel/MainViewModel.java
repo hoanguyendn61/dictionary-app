@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 import com.cuoiky.andoid.dictionaryapp.data.repository.WordsRepo;
+import com.cuoiky.andoid.dictionaryapp.ui.main.MainActivity;
 import com.cuoiky.andoid.dictionaryapp.util.WordResponseListener;
 
 import java.util.List;
@@ -35,6 +36,9 @@ public class MainViewModel extends ViewModel {
     }
     public void removeWord(Word w){
         mRepo.removeWord(w);
+    }
+    public void removeListofWords( List<Word> w, MainActivity.OnRemoveSelectedWords mListener){
+        mRepo.removeListofWords(w, mListener);
     }
 
 }
