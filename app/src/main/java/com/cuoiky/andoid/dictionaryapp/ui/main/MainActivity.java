@@ -23,6 +23,12 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private static final String TAG = "MainActivity";
@@ -69,12 +75,30 @@ public class MainActivity extends AppCompatActivity {
         binding.svSearchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                getWordFromApi(query);
+                Single<Word> w = mViewModel.findWord(query);
+                w.subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableSingleObserver<Word>() {
+                            @Override
+                            public void onSuccess(@NonNull Word word) {
+                                if (word != null){
+                                    Log.d(TAG,"Word is in list of favourite words");
+                                    openDetailActivity(word, true);
+                                } else {
+                                    Log.e(TAG, "onSuccess " + query);
+                                }
+                            }
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+                                getWordFromApi(query);
+                            }
+                        });
                 return true;
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                mFavAdapter.filter(newText);
+                return true;
             }
         });
     }
