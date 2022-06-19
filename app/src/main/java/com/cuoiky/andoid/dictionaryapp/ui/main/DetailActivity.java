@@ -1,15 +1,18 @@
 package com.cuoiky.andoid.dictionaryapp.ui.main;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cuoiky.andoid.dictionaryapp.R;
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
 import com.cuoiky.andoid.dictionaryapp.databinding.ActivityDetailBinding;
 import com.cuoiky.andoid.dictionaryapp.ui.adapter.ResultsAdapter;
@@ -22,6 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     private ResultsAdapter mAdapter;
     private Word mWord;
     private MainViewModel mViewModel;
+    private Boolean isFav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Intent i = getIntent();
         mWord = gson.fromJson(i.getStringExtra("wordItem"), Word.class);
+        isFav = i.getBooleanExtra("favourite", false);
         Log.d(TAG, mWord.toString());
         mAdapter = new ResultsAdapter(getApplicationContext());
         setData(mWord);
@@ -53,10 +58,38 @@ public class DetailActivity extends AppCompatActivity {
 
     void setData(Word w){
         binding.tvWord.setText(w.getWord());
+        if (isFav){
+            binding.ivStar.setImageResource(R.drawable.ic_baseline_star_36);
+        } else {
+            binding.ivStar.setImageResource(R.drawable.ic_baseline_star_outline_36);
+        }
+        if (w.getPronunciation().getAll() != null){
+            TextView tv = createPronTextView("all:" + " /"+w.getPronunciation().getAll()+"/");
+            binding.llPronunciation.addView(tv);
+        }
+        if (w.getPronunciation().getNoun() != null){
+            TextView tv = createPronTextView("noun:" + " /"+w.getPronunciation().getNoun()+"/");
+            binding.llPronunciation.addView(tv);
+        }
+        if (w.getPronunciation().getVerb() != null){
+            TextView tv = createPronTextView("verb:" + " /"+w.getPronunciation().getVerb()+"/");
+            binding.llPronunciation.addView(tv);
+        }
         RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(getApplicationContext());
         binding.rvResults.setLayoutManager(linearLayout);
         binding.rvResults.setAdapter(mAdapter);
-//        mAdapter.setResultsList(mWord.getResults());
+        mAdapter.setResultsList(mWord.getResults());
+    }
+    TextView createPronTextView(String text){
+        TextView tv = new TextView(getApplicationContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            tv.setTextAppearance(R.style.PronunciationTextStyle);
+        } else {
+            tv.setTextAppearance(getApplicationContext(), R.style.PronunciationTextStyle);
+        }
+        tv.setPadding(10,5,10,5);
+        tv.setText(text);
+        return tv;
     }
     
 }
