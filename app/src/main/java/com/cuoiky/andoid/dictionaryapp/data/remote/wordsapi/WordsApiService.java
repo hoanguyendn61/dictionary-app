@@ -1,6 +1,7 @@
 package com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi;
 
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
+
 import com.cuoiky.andoid.dictionaryapp.util.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -25,7 +26,6 @@ public class WordsApiService {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(type, typeAdapter);
         Gson gson = gsonBuilder.create();
-
         return GsonConverterFactory.create(gson);
     }
     public Call<Word> getWord(String w){

@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 List<Word> listW = mFavAdapter.getSelectedWords();
-                Log.d(TAG, String.valueOf(listW));
                 if (listW.size() > 0){
                     mViewModel.removeListofWords(listW, new OnRemoveSelectedWords() {
                         @Override
@@ -108,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
         binding.svSearchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d(TAG,"word: " + query);
                 Single<Word> w = mViewModel.findWord(query);
                 w.subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -116,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(@NonNull Word word) {
                                 if (word != null){
-                                    Log.d(TAG,"Word is in list of favourite words");
                                     openDetailActivity(word, true);
                                 } else {
                                     Log.e(TAG, "onSuccess " + query);
@@ -214,7 +211,6 @@ public class MainActivity extends AppCompatActivity {
         mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Log.d(TAG, "Level: " + mLevelSpinner.getSelectedItem().toString());
                 String level = mLevelSpinner.getSelectedItem().toString().toLowerCase(Locale.ROOT);
                 String area = mAreaSpinner.getSelectedItem().toString().toLowerCase(Locale.ROOT);
                 mViewModel.getWordQuizFromApi(level, area, new QuizResponseListener() {

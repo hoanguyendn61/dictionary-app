@@ -58,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_favourites"
             android:layout_width="match_parent"
@@ -72,5 +73,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginVertical="8dp"
             android:text="@string/test" />
+
     </RelativeLayout>
 </LinearLayout>

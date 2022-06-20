@@ -45,8 +45,6 @@ public class DetailActivity extends AppCompatActivity {
         Intent i = getIntent();
         mWord = gson.fromJson(i.getStringExtra("wordItem"), Word.class);
         isFav = i.getBooleanExtra("favourite", false);
-        Log.d(TAG, "is Fav: " + isFav);
-        Log.d(TAG, mWord.toString());
         mAdapter = new ResultsAdapter(getApplicationContext());
         setData(mWord);
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +68,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
-        
+
     }
 
     void setData(Word w){

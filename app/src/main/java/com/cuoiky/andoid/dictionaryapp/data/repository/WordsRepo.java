@@ -15,7 +15,6 @@ import com.cuoiky.andoid.dictionaryapp.ui.main.MainActivity;
 import com.cuoiky.andoid.dictionaryapp.util.WordResponseListener;
 
 import java.util.List;
-
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +41,8 @@ public class WordsRepo {
     public LiveData<List<Word>> getFavWords(){
         return this.mFavWords;
     }
-//    find if word exists in list of favourite words
+
+  // find if word exists in list of favourite words
     public Single<Word> findWord(String w){
         return this.mWordsDao.findWord(w);
     }
@@ -97,7 +97,6 @@ public class WordsRepo {
             return null;
         }
     }
-
     private static class removeListAsyncTask extends AsyncTask<List<Word>, Void, Boolean>{
         private final MainActivity.OnRemoveSelectedWords mListener;
         private final WordsDao mAsyncTaskDao;

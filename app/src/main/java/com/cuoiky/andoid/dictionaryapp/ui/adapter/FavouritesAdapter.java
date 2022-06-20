@@ -95,6 +95,7 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
         }
         notifyDataSetChanged();
     }
+
     @Override
     public int getItemCount() {
         return this.listFavWords.size();
