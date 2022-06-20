@@ -1,16 +1,16 @@
 package com.cuoiky.andoid.dictionaryapp.ui.main;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.cuoiky.andoid.dictionaryapp.R;
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
@@ -68,6 +68,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     void setData(Word w){
@@ -105,5 +106,4 @@ public class DetailActivity extends AppCompatActivity {
         tv.setText(text);
         return tv;
     }
-    
 }

@@ -1,8 +1,7 @@
 package com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi;
 
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Word;
-import com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi.WordsApi;
-import com.cuoiky.andoid.dictionaryapp.data.remote.wordsapi.GetWordDetailsDeserializer;
+
 import com.cuoiky.andoid.dictionaryapp.util.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

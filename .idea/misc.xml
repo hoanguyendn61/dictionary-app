@@ -13,6 +13,7 @@
         <entry key="..\:/DaiHoc/3-hk2/LTDD/PBL/dictionary-app/app/src/main/res/layout/result_item.xml" value="0.22826086956521738" />
         <entry key="..\:/Download/Study/HOC/YEAR_3/HOCKY_II/Mobile/CUOIKYAndroid/MainProject/DictionaryApp/app/src/main/res/font/font.xml" value="0.21944444444444444" />
         <entry key="..\:/Download/Study/HOC/YEAR_3/HOCKY_II/Mobile/CUOIKYAndroid/MainProject/DictionaryApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Download/Study/HOC/YEAR_3/HOCKY_II/Mobile/CUOIKYAndroid/MainProject/DictionaryApp/app/src/main/res/layout/activity_quiz.xml" value="0.264" />
         <entry key="..\:/Download/Study/HOC/YEAR_3/HOCKY_II/Mobile/CUOIKYAndroid/MainProject/DictionaryApp/app/src/main/res/layout/fragment_detail.xml" value="0.25416666666666665" />
       </map>
     </option>
@@ -22,5 +23,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>

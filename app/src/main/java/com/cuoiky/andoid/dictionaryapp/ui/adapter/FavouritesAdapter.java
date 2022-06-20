@@ -42,13 +42,13 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
     }
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavouritesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favourite_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavouritesAdapter.ViewHolder holder, int position) {
         holder.bind(listFavWords.get(position), context, clickListener);
         Word w = listFavWords.get(position);
         if (!selectedWords.contains(w)){
@@ -74,6 +74,12 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
             }
         });
     }
+    public List<Word> getSelectedWords(){
+        return this.selectedWords;
+    }
+    public void clearSelectedWords(){
+        this.selectedWords.clear();
+    }
     public void filter(String keyword){
         this.listFavWords.clear();
         if(!keyword.equals("")){
@@ -89,12 +95,7 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
         }
         notifyDataSetChanged();
     }
-    public List<Word> getSelectedWords(){
-        return this.selectedWords;
-    }
-    public void clearSelectedWords(){
-        this.selectedWords.clear();
-    }
+
     @Override
     public int getItemCount() {
         return this.listFavWords.size();

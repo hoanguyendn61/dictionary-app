@@ -15,13 +15,7 @@ import com.cuoiky.andoid.dictionaryapp.ui.main.MainActivity;
 import com.cuoiky.andoid.dictionaryapp.util.WordResponseListener;
 
 import java.util.List;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.observers.DisposableSingleObserver;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +41,8 @@ public class WordsRepo {
     public LiveData<List<Word>> getFavWords(){
         return this.mFavWords;
     }
-    //    find if word exists in list of favourite words
+
+  // find if word exists in list of favourite words
     public Single<Word> findWord(String w){
         return this.mWordsDao.findWord(w);
     }
@@ -67,7 +62,7 @@ public class WordsRepo {
             }
             @Override
             public void onFailure(Call<Word> call, Throwable t) {
-                Log.d(TAG,t.getMessage());
+                Log.d(TAG,"onFailure:" + t.getMessage());
             }
         });
     }
@@ -109,6 +104,7 @@ public class WordsRepo {
             this.mListener = mListener;
             mAsyncTaskDao = dao;
         }
+
         @Override
         protected Boolean doInBackground(List<Word>... lists) {
             mAsyncTaskDao.removeListofWords(lists[0]);

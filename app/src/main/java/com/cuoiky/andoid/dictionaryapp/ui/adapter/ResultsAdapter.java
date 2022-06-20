@@ -3,14 +3,11 @@ package com.cuoiky.andoid.dictionaryapp.ui.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cuoiky.andoid.dictionaryapp.R;
 import com.cuoiky.andoid.dictionaryapp.data.model.wordsapi.Result;
-import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayout;
-import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
+
 
 import java.util.ArrayList;
 import java.util.List;
