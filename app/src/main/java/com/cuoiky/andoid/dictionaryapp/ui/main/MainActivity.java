@@ -6,8 +6,11 @@ import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -121,15 +124,10 @@ public class MainActivity extends AppCompatActivity {
                             }
                             @Override
                             public void onError(@NonNull Throwable e) {
-                                try {
-                                    if (isConnected()){
-                                        getWordFromApi(query);
-                                    } else {
-                                        Toast.makeText(getApplicationContext(),"Please check your internet connection and try again", Toast.LENGTH_LONG).show();
-                                    }
-                                } catch (InterruptedException | IOException interruptedException) {
-
-                                    Log.e(TAG, "onError "  + e.getMessage() + interruptedException.getMessage());
+                                if (isConnected()){
+                                    getWordFromApi(query);
+                                } else {
+                                    Toast.makeText(getApplicationContext(),"Please check your internet connection and try again", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -179,9 +177,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 //    Check for internet connection
-    public boolean isConnected() throws InterruptedException, IOException {
-        String command = "ping -i 5 -c 1 www.rapidapi.com";
-        return Runtime.getRuntime().exec(command).waitFor() == 0;
+    public boolean isConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
     public interface OnRemoveSelectedWords{
         public void clear(boolean result);
@@ -190,14 +189,10 @@ public class MainActivity extends AppCompatActivity {
         binding.btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    if (isConnected()){
-                        openQuizDialog();
-                    } else {
-                        Toast.makeText(getApplicationContext(),"Please check your internet connection and try again", Toast.LENGTH_LONG).show();
-                    }
-                } catch (InterruptedException | IOException interruptedException) {
-                    Log.e(TAG, "onError " + interruptedException.getMessage());
+                if (isConnected()){
+                    openQuizDialog();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Please check your internet connection and try again", Toast.LENGTH_LONG).show();
                 }
             }
         });
