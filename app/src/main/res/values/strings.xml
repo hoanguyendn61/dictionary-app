@@ -6,4 +6,36 @@
     <string name="definitions">Definitions</string>
     <string name="synonyms">Synonyms</string>
     <string name="examples">Examples</string>
+    <string name="results">Results</string>
+    <string name="favourites">Favourites</string>
+    <string name="remove">Remove</string>
+    <string name="test">Test your vocabulary</string>
+    <string name="you_re_a_quizzard_harry">You\'re a Quizzard, Harry!</string>
+    <string name="next">Next</string>
+    <string-array name="levelList">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="areaList">
+        <item>ES</item>
+        <item>MS</item>
+        <item>HS</item>
+        <item>KSAT</item>
+        <item>TOEIC</item>
+        <item>TOEFL</item>
+        <item>TEPS</item>
+        <item>SAT</item>
+        <item>IETLS</item>
+        <item>GRE</item>
+        <item>GMAT</item>
+        <item>OVERALL</item>
+    </string-array>
 </resources>

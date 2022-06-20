@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="18dp"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.QuizActivity">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rozha_one_regular"
+        android:textColor="@color/primaryColor"
+        android:textSize="44sp"
+        android:text="@string/you_re_a_quizzard_harry"
+        />
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/rozha_one_regular"
+        android:textSize="32dp"
+        android:textColor="@color/primaryColor"
+        android:text="0/10"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="12dp"
+        android:textSize="18dp"
+        android:text="Just select which word is most closely related to the given group of words"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/ll_quiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:justifyContent="center"
+        app:flexWrap="wrap">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_quiz1"
+            style="@style/LightFavWordTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loremipsum" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_quiz2"
+            style="@style/LightFavWordTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:text="LoremIpsum" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_quiz3"
+            style="@style/LightFavWordTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem" />
+    </com.google.android.flexbox.FlexboxLayout>
+    <TextView
+        android:layout_marginTop="24dp"
+        android:textSize="18dp"
+        android:text="Your option:"
+        android:layout_marginEnd="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="center"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_opt1"
+            android:layout_width="wrap_content"
+            app:backgroundTint="@color/white"
+            android:textColor="@color/primaryColor"
+            app:strokeColor="@color/primaryColor"
+            app:strokeWidth="1dp"
+            app:cornerRadius="16dp"
+            android:text="loremipsum"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_opt2"
+            android:layout_width="wrap_content"
+            app:backgroundTint="@color/white"
+            android:textColor="@color/primaryColor"
+            app:strokeWidth="1dp"
+            android:layout_marginStart="12dp"
+            app:strokeColor="@color/primaryColor"
+            app:cornerRadius="16dp"
+            android:text="loremipsum"
+            android:layout_height="wrap_content"/>
+    </com.google.android.flexbox.FlexboxLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_next"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        />
+</LinearLayout>

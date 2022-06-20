@@ -3,32 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginHorizontal="18dp"
-    android:layout_marginTop="172dp"
+    android:paddingHorizontal="18dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bodonimoda_extrabold"
+        android:fontFamily="@font/rozha_one_regular"
         android:textColor="@color/primaryColor"
         android:textSize="56sp"
         android:text="@string/dictionary"
         />
     <androidx.appcompat.widget.SearchView
         android:id="@+id/sv_searchbar"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="34dp"
-        android:background="@color/lightGrey"
+        android:theme="@style/BlackCursorSearchView"
         android:layout_width="match_parent"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search here"
+        app:defaultQueryHint="Search here"
+        android:focusableInTouchMode="true"
         android:layout_height="wrap_content"/>
-    <androidx.appcompat.widget.AppCompatTextView
-        android:textColor="@color/primaryColor"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bodonimoda_extrabold"
-        android:textSize="32sp"
-        android:text="@string/recent"
-        />
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/primaryColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rozha_one_regular"
+            android:textSize="32sp"
+            android:text="@string/favourites"
+            />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:backgroundTint="@color/white"
+            android:textColor="@color/primaryColor"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/primaryColor"
+            app:strokeWidth="0.4dp"
+            android:text="@string/remove"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_favourites"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btn_test" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="8dp"
+            android:text="@string/test" />
+    </RelativeLayout>
 </LinearLayout>
